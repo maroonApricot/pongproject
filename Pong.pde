@@ -119,12 +119,25 @@ public void updateScores() {
   if (ball.intersectsVertical()) { // point scored
     // YOUR_CODE_HERE
     // 1.
+    ball.setVector(noMove());
     
     // 2.
-    
+    state = GAME_STATE.NO_PLAY;
     // 3.
+    if (ball.getX() < 500)
+    {
+        text("PLAYER WINS", 500, -350);
+    }
+    else if (ball.getX() > 500)
+    {
+        text("COMPUTER WINS", 500, -350);
+    }
     
     // 4.
+    //if(state==GAME_STATE.GAME_OVER)
+    {
+        j
+    }
     
     // Increase game speed
     gameSpeed++;
