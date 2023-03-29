@@ -22,27 +22,17 @@ class Player extends Paddle {
      *       2B. Set the y-coordinate so that the edge of the paddle is touching the wall
      */
     public void move() {
-        // YOUR_CODE_HERE
         // 1.
-        //player.setVector(player.getX())
-            
+        setY(getY() + getVector().y);
         // 2.
-        if (state == GAME_STATE.IN_PLAY) {
-            if (intersectsHorizontal()) {
-                setVector(NO_MOVE);
-                if (getY() < 0) {
-                    setY(-height / 2 + getHeight() / 2);
-                }
-                else {
-                    setY(height / 2 - getHeight() / 2);
-                }
+        if (intersectsHorizontal()) {
+            setVector(NO_MOVE);
+            if (getY() < 0) {
+                setY(-(height / 2) + getHeight() / 2);
             }
-            // 2A.
-            ball.setVector(noMove());
-
-            // 2B.Set the y-coordinate so that the edge of the paddle is touching the wall
-            
-            
+            else {
+                setY(height / 2 - getHeight() / 2);
+            }
         }
     }
 }

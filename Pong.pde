@@ -107,40 +107,33 @@ public void showScores() {
 
 // TODO: updateScores()
 public void updateScores() {
-  // If the ball is not in play, there is no score to update, so just return
   if (state != GAME_STATE.IN_PLAY) return;
-  
-  // If the ball is in play, then check to see if it has hit a wall.
-  // If so, then:
-  // 1. Stop the ball (think vector)
-  // 2. Change the state of the game so the ball is no longer in play
-  // 3. Figure out who scored and give that side a point.
-  // 4. Check to see if the game is over; if so, change the game state accordingly
-  if (ball.intersectsVertical()) { // point scored
-    // YOUR_CODE_HERE
-    // 1.
+  else {
+    if (ball.intersectsVertical()) { // point scored
+    // 1. Stop the ball (think vector)
     ball.setVector(noMove());
     
-    // 2.
+    // 2. Change the state of the game so the ball is no longer in play
     state = GAME_STATE.NO_PLAY;
-    // 3.
-    if (ball.getX() < 500)
+    // 3. Figure out who scored and give that side a point.
+    //TODO: swap
+    if (ball.getX() < 0)
     {
-        text("PLAYER WINS", 500, -350);
+        player.scorePoint();
     }
-    else if (ball.getX() > 500)
+    else if (ball.getX() > 0)
     {
-        text("COMPUTER WINS", 500, -350);
+        computer.scorePoint();
     }
     
-    // 4.
-    //if(state==GAME_STATE.GAME_OVER)
-    {
-        j
+    // 4. Check to see if the game is over; if so, change the game state accordingly
+    if (player.getScore() == 10 || computer.getScore() == 10){
+      state = GAME_STATE.GAME_OVER;
     }
     
     // Increase game speed
     gameSpeed++;
+    }
   }
 }
 

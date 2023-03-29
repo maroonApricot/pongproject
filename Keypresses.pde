@@ -9,9 +9,9 @@
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP) {
-      player.changeVerticalSpeed(-gameSpeed);
+      player.setVerticalSpeed(-gameSpeed);
     } else if (keyCode == DOWN) {
-      player.changeVerticalSpeed(gameSpeed);
+      player.setVerticalSpeed(gameSpeed);
     } else if ((keyCode == LEFT) || (keyCode == RIGHT)) {
       player.setVector(NO_MOVE);
     }
@@ -26,7 +26,7 @@ void keyPressed() {
         ball = new Ball(0, 
                         0, 
                         7, 
-                        initializeBallVector(1), 
+                        initializeBallVector(5), 
                         color(#ff0000));
       } else {
         ball = new Ball(0, 

@@ -52,10 +52,9 @@ class Ball {
     //       (getY()+(height/2)-getRadius() <= 0);
   }
 
-  // TODO: intersectsPaddle(Paddle paddle)
   // Return true if the ball is touching the specified paddle
   public boolean intersectsPaddle(Paddle paddle) {
-    // YOUR_CODE_HERE
+    // TODO: rewrite (stopped working :,D)
     return ((abs(getX()+getRadius()) > abs(paddle.getX()-paddle.getWidth()/2)) &&
            ((getY() < paddle.getY()+paddle.getHeight()/2) && (getY() > paddle.getY()-paddle.getHeight()/2)));
   }
@@ -93,6 +92,6 @@ class Ball {
   }
 
   public String toString() {
-    return "Ball: (" + getX() + ", " + getY() + "), radius = " + getRadius();
+    return "Ball: (" + getX() + ", " + getY() + "), radius = " + getRadius() + "Vector values: " +vector.x + ", " + vector.y ;
   }
 }

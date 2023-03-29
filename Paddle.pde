@@ -55,9 +55,9 @@ class Paddle {
         else {
           y = height / 2 - getHeight() / 2;
         }
-      } else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
+      }else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
         vector.set(vector.x, ball.getVector().y);
-      } else {
+      }else {
         vector.set(vector.x, 2 * ball.getVector().y);
       }
     } else {
@@ -65,11 +65,13 @@ class Paddle {
         vector.set(vector.x, -vector.y);
       }
     }
+    //System.out.println(vector.y);
     y+= vector.y;
   }
 
-  public void changeVerticalSpeed(int n) {
-    vector.set(vector.x, vector.y + n);
+  public void setVerticalSpeed(int n) {
+    vector.set(vector.x, n);
+    //System.out.println(vector.y);
   }
 
   public void draw() {
