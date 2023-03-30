@@ -36,11 +36,9 @@ class Ball {
 
   // Returns true if ball is touching a vertical wall
   public boolean intersectsVertical() {
-    return (getX()+(width/2)+getRadius() > width) ||
-           (getX()+(width/2)-getRadius() < 0);
     // NOTE: removing "or equals" from the comparisons makes adding +/- 1 to the x-coord obsolete
-    //return (getX()+(width/2)+getRadius() >= width) ||
-    //       (getX()+(width/2)-getRadius() <= 0);
+    return (getX()+(width/2)+getRadius() >= width) || 
+           (getX()+(width/2)-getRadius() <= 0);
   }
 
   // Returns true if ball is touching a horizontal wall
@@ -54,9 +52,19 @@ class Ball {
 
   // Return true if the ball is touching the specified paddle
   public boolean intersectsPaddle(Paddle paddle) {
-    // TODO: rewrite (stopped working :,D)
-    return ((abs(getX()+getRadius()) > abs(paddle.getX()-paddle.getWidth()/2)) &&
-           ((getY() < paddle.getY()+paddle.getHeight()/2) && (getY() > paddle.getY()-paddle.getHeight()/2)));
+    //debugging code
+    //if (abs(getX())+getRadius() > abs(paddle.getX())-paddle.getWidth()/2){
+    //     if ((y >= paddle.getY()-paddle.getHeight()/2) && y <= paddle.getY()+paddle.getHeight()/2){
+    //         float top = paddle.getY()-paddle.getHeight()/2;
+    //         System.out.println(y + ">=" + top);
+    //         float bottom = paddle.getY()+paddle.getHeight()/2;
+    //         System.out.println(y + "<=" + bottom);
+    //     }
+    // }
+    
+    return (abs(x)+radius >= abs(paddle.getX())-paddle.getWidth()/2) && 
+           !(abs(x)-radius >= abs(paddle.getX())) &&
+            (abs(getY() - paddle.getY()) < getRadius() + paddle.getHeight()/2);
   }
 
   // TODO: move()

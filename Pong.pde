@@ -116,15 +116,8 @@ public void updateScores() {
     // 2. Change the state of the game so the ball is no longer in play
     state = GAME_STATE.NO_PLAY;
     // 3. Figure out who scored and give that side a point.
-    //TODO: swap
-    if (ball.getX() < 0)
-    {
-        player.scorePoint();
-    }
-    else if (ball.getX() > 0)
-    {
-        computer.scorePoint();
-    }
+    if (ball.getX() > 0) player.scorePoint();
+    else if (ball.getX() < 0) computer.scorePoint();
     
     // 4. Check to see if the game is over; if so, change the game state accordingly
     if (player.getScore() == 10 || computer.getScore() == 10){

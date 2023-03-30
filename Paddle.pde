@@ -1,5 +1,5 @@
 // In this tab, DO NOT CHANGE ANY CODE
-
+//TODO: fix computer paddle speed
 class Paddle {
   private float x;  // x-coordinate of left edge of paddle
   private float y;  // y-coordinate of center of paddle
