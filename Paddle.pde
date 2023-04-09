@@ -10,7 +10,7 @@ class Paddle {
   private int score = 0;
 
   public Paddle(float x, float y, float w, float h, PVector vector, color c) {
-    this.x = x;
+    this.x = x + w/2; //offset to middle
     this.y = y;
     this.w = w;
     this.h = h;
@@ -56,18 +56,25 @@ class Paddle {
         else {
           y = height / 2 - getHeight() / 2;
         }
-      }else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
-//      }else if (abs(y - ball.getY()) <= getHeight()/2 + ball.getRadius()) {
+      //}else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
+      }else if (abs(ball.getY() - y) < ball.getRadius() + h/2){
         vector.set(vector.x, ball.getVector().y);
       }else {
-        vector.set(vector.x, 2 * ball.getVector().y);
+          //TODO optimize logic
+          //can set hard difficulty and easy difficulty, hard difficulty increases gamespeed and vertical vector is set at 3
+        if (y - h/2 > ball.getY())
+            vector.set(vector.x, -abs(3 * ball.getVector().y));
+        else if (y + h/2 < ball.getY()){
+            vector.set(vector.x, abs(3 * ball.getVector().y));
+        } else {
+            vector.set(vector.x, 3 * ball.getVector().y);
+        }
       }
     } else {
       if (intersectsHorizontal()) {
         vector.set(vector.x, -vector.y);
       }
     }
-    System.out.println(vector.y);
     y+= vector.y;
   }
 

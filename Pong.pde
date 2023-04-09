@@ -12,6 +12,7 @@
 int debuggingCounter = 0;
 final int DEBUGGING_TICKS = 100; // how often status report is shown in console
 boolean testingMode = false;  // toggle to true to implement testing conditions
+boolean hardMode = false;
 
 // Create "global" variables
 Ball ball;
@@ -35,13 +36,13 @@ int gameSpeed = INIT_GAME_SPEED;
 void setup() {
   size(1024, 768);
   ellipseMode(RADIUS);
-  
+
   if (testingMode) { // testing conditions for paddles
-    computer = new Paddle(75, 0, 8, 3 * height / 10, NO_MOVE, color(#000000));
-    player = new Player(-75, 0, 8, height/5, noMove(), color(#000000));
+    computer = new Paddle(75, 0, 8, 3 * height / 10, NO_MOVE, color(#ffffff));
+    player = new Player(-75, 0, 8, height/5, noMove(), color(#ffffff));
   } else { // paddles for normal play
-    computer = new Paddle(width/2 - 100, 0, 9, height/5, new PVector(0, 3), color(#000000)); // original computer
-    player = new Player(-width/2 + 100, 0, 9, height/5, NO_MOVE, color(#000000));
+    computer = new Paddle(width/2 - 100, 0, 9, height/5, new PVector(0, 3), color(#ffffff)); // original computer
+    player = new Player(-width/2 + 100, 0, 9, height/5, NO_MOVE, color(#ffffff));
   }
 
   // Settings for scoring
@@ -52,7 +53,7 @@ void setup() {
 
 // Processing puts the main draw() method in a sort of infinite loop until the program is quit.
 void draw() {
-  background(#ffffff);
+  background(#000000);
 
   debuggingCounter = (debuggingCounter + 1) % DEBUGGING_TICKS;
   if (debuggingCounter == 0) {
@@ -80,6 +81,7 @@ public void moveObjects() {
 public void drawObjects() {
   // Don't draw a ball until a game has started
   if (state != GAME_STATE.BEFORE_GAME) ball.draw();
+  else selectMode();
   computer.draw();
   player.draw();
 }
@@ -128,6 +130,12 @@ public void updateScores() {
     gameSpeed++;
     }
   }
+}
+
+void selectMode(){
+    if (state == GAME_STATE.BEFORE_GAME){
+        
+    }
 }
 
 // Prints the state of the game to the console.

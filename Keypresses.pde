@@ -25,16 +25,16 @@ void keyPressed() {
       if (testingMode) {
         ball = new Ball(0, 
                         0, 
-                        7, 
+                        10, 
                         initializeBallVector(5), 
-                        color(#ff0000));
+                        color(#ffffff));
       } else {
         ball = new Ball(0, 
                         random(-height/2 + 100, 
                         height/2 - 100), 
-                        7, 
+                        10, 
                         initializeBallVector((float) Math.pow(-1,computer.getScore() + player.getScore())), 
-                        color(#ff0000));
+                        color(#ffffff));
       }
       state = GAME_STATE.IN_PLAY;
     } else if (Math.round(Math.abs(ball.getVector().mag())) != 1) {
