@@ -23,10 +23,11 @@ GAME_STATE state = GAME_STATE.BEFORE_GAME;  // Keeps track of state of game
 PVector NO_MOVE = new PVector(0.0, 0.0); // THERE IS AN ISSUE WITH THIS CODE.
 PFont font;
 PFont gameOverFont;
+PFont bodyTextFont;
 float origBallVectorMag; // NEW
 
 // Determine the game length
-final int POINTS_NEEDED_TO_WIN = 1;
+final int POINTS_NEEDED_TO_WIN = 10;
 
 // Set the initial game speed (probably not needed)
 final int INIT_GAME_SPEED = 2;
@@ -48,6 +49,7 @@ void setup() {
   // Settings for scoring
   font = createFont("Courier", height / 10);
   gameOverFont = createFont("Courier", height / 8);
+  bodyTextFont = createFont("Courier", height/24);
   textAlign(CENTER, CENTER);  // Specify center of where text should be printed
 }
 
@@ -103,6 +105,7 @@ public void showScores() {
   
   // YOUR_CODE_HERE
   if (state == GAME_STATE.GAME_OVER){
+      textFont(gameOverFont);
       text("GAME OVER", 500, 350);
   }
 }
@@ -122,7 +125,7 @@ public void updateScores() {
     else if (ball.getX() < 0) computer.scorePoint();
     
     // 4. Check to see if the game is over; if so, change the game state accordingly
-    if (player.getScore() == 10 || computer.getScore() == 10){
+    if (player.getScore() == POINTS_NEEDED_TO_WIN || computer.getScore() == POINTS_NEEDED_TO_WIN){
       state = GAME_STATE.GAME_OVER;
     }
     
@@ -132,9 +135,17 @@ public void updateScores() {
   }
 }
 
+//whenever someone starts up the game, they get to choose the difficulty
 void selectMode(){
     if (state == GAME_STATE.BEFORE_GAME){
-        
+        fill(#FFFFFF);
+        rect(width/2 - 300, height/2 - 150, 600, 300);
+        fill(#000000);
+        textFont(bodyTextFont);
+        text("Press the left arrow", width/2, height/2 - 100);
+        text("to select easy mode", width/2, height/2 - 50);
+        text("Press the right arrow key", width/2, height/2 + 50);
+        text("to select hard mode", width/2, height/2 + 100);
     }
 }
 
