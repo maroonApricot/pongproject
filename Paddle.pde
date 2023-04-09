@@ -56,18 +56,17 @@ class Paddle {
         else {
           y = height / 2 - getHeight() / 2;
         }
-      //}else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
       }else if (abs(ball.getY() - y) < ball.getRadius() + h/2){
         vector.set(vector.x, ball.getVector().y);
       }else {
           //TODO optimize logic
           //can set hard difficulty and easy difficulty, hard difficulty increases gamespeed and vertical vector is set at 3
-        if (y - h/2 > ball.getY())
-            vector.set(vector.x, -abs(3 * ball.getVector().y));
-        else if (y + h/2 < ball.getY()){
-            vector.set(vector.x, abs(3 * ball.getVector().y));
+        if (hardMode && (y - h/2 > ball.getY())){
+            vector.set(vector.x, -5*gameSpeed);
+        }else if (hardMode && (y + h/2 < ball.getY())){
+            vector.set(vector.x, 5*gameSpeed);
         } else {
-            vector.set(vector.x, 3 * ball.getVector().y);
+            vector.set(vector.x, 2 * ball.getVector().y);
         }
       }
     } else {
@@ -80,7 +79,6 @@ class Paddle {
 
   public void setVerticalSpeed(int n) {
     vector.set(vector.x, n);
-    //System.out.println(vector.y);
   }
 
   public void draw() {

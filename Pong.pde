@@ -146,10 +146,13 @@ void selectMode(){
         text("to select easy mode", width/2, height/2 - 50);
         text("Press the right arrow key", width/2, height/2 + 50);
         text("to select hard mode", width/2, height/2 + 100);
+        fill(#FFFFFF);
+        text ("Hard mode set: " + hardMode, width/2, height/2 + 175);
+        text ("Press space to start", width/2, height/2 + 225);
     }
 }
 
-// Prints the state of the game to the console.
+// Prints the state of the game to the console. 
 void printState() {
   switch(state) {
     case IN_PLAY: System.out.println("IN PLAY"); break;

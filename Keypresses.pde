@@ -8,12 +8,29 @@
 
 void keyPressed() {
   if (key == CODED) {
-    if (keyCode == UP) {
-      player.setVerticalSpeed(-gameSpeed);
-    } else if (keyCode == DOWN) {
-      player.setVerticalSpeed(gameSpeed);
-    } else if ((keyCode == LEFT) || (keyCode == RIGHT)) {
-      player.setVector(NO_MOVE);
+    // if (keyCode == UP) {
+    //   player.setVerticalSpeed(-gameSpeed);
+    // } else if (keyCode == DOWN) {
+    //   player.setVerticalSpeed(gameSpeed);
+    // } else if ((keyCode == LEFT) || (keyCode == RIGHT)) {
+    //   player.setVector(NO_MOVE);
+    // }
+    switch(keyCode){
+      case UP: 
+        if (hardMode) player.setVerticalSpeed(-2*gameSpeed); else player.setVerticalSpeed(-gameSpeed);
+        break;
+      case DOWN: 
+        if (hardMode) player.setVerticalSpeed(2*gameSpeed); else player.setVerticalSpeed(gameSpeed);
+        break;
+      case LEFT:
+        hardMode = false;
+        break;
+      case RIGHT:
+        hardMode = true;
+        break;
+      default:
+        player.setVector(NO_MOVE);
+        break;
     }
   } else if (key == ' ') {
     if (state != GAME_STATE.IN_PLAY) {
@@ -22,18 +39,26 @@ void keyPressed() {
         player.setScore(0);
         gameSpeed = INIT_GAME_SPEED;
       }
+      float initBallDir = (float) Math.pow(-1,computer.getScore() + player.getScore());
       if (testingMode) {
         ball = new Ball(0, 
                         0, 
                         10, 
                         initializeBallVector(5), 
                         color(#ffffff));
+      } else if (hardMode) {
+        ball = new Ball(0, 
+                        random(-height/2 + 100, 
+                        height/2 - 100), 
+                        10, 
+                        initializeBallVector(initBallDir * gameSpeed/2), 
+                        color(#ffffff));
       } else {
         ball = new Ball(0, 
                         random(-height/2 + 100, 
                         height/2 - 100), 
                         10, 
-                        initializeBallVector((float) Math.pow(-1,computer.getScore() + player.getScore())), 
+                        initializeBallVector(initBallDir), 
                         color(#ffffff));
       }
       state = GAME_STATE.IN_PLAY;
