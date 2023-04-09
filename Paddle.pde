@@ -32,13 +32,14 @@ class Paddle {
 
   public boolean intersectsHorizontal() {
     return (getY()+getHeight()/2 > height/2) ||
-      (getY()+(height/2)-getHeight()/2 < 0);
+      (getY()-getHeight()/2 < -height/2);
     // NOTE: removing "or equals" from the comparisons makes adding +/- 1 to the y-coord obsolete
     //return (getY()+getHeight()/2 >= height/2) ||
     //       (getY()+(height/2)-getHeight()/2 <= 0);
   }
 
   public void move() {
+
     // 1. If IN_PLAY and until center of ball aligns with center of paddle
     //   1A. Set vector towards ball at 2x gameSpeed
     //   1B. Set vector to match ball
@@ -56,6 +57,7 @@ class Paddle {
           y = height / 2 - getHeight() / 2;
         }
       }else if (Math.abs(y + getHeight()/ 2 - ball.getY()) <= ball.getRadius()) {
+//      }else if (abs(y - ball.getY()) <= getHeight()/2 + ball.getRadius()) {
         vector.set(vector.x, ball.getVector().y);
       }else {
         vector.set(vector.x, 2 * ball.getVector().y);
@@ -65,7 +67,7 @@ class Paddle {
         vector.set(vector.x, -vector.y);
       }
     }
-    //System.out.println(vector.y);
+    System.out.println(vector.y);
     y+= vector.y;
   }
 

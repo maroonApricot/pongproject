@@ -52,18 +52,29 @@ class Ball {
 
   // Return true if the ball is touching the specified paddle
   public boolean intersectsPaddle(Paddle paddle) {
-    //debugging code
-    //if (abs(getX())+getRadius() > abs(paddle.getX())-paddle.getWidth()/2){
-    //     if ((y >= paddle.getY()-paddle.getHeight()/2) && y <= paddle.getY()+paddle.getHeight()/2){
-    //         float top = paddle.getY()-paddle.getHeight()/2;
-    //         System.out.println(y + ">=" + top);
-    //         float bottom = paddle.getY()+paddle.getHeight()/2;
-    //         System.out.println(y + "<=" + bottom);
-    //     }
-    // }
+    // TODO: rewrite (stopped working :,D)
+    //check if it's touching top of paddle
+    //boolean intersectsY = (getY() <= (paddle.getY()+paddle.getHeight()/2)) && (getY() >= (paddle.getY()-paddle.getHeight()/2));
+    //boolean intersectsX = (abs(getX())+getRadius() >= abs(paddle.getX())-paddle.getWidth()/2);
+    //if (intersectsX){
+    //    intersectsX = (!((abs(getX()) >= abs(paddle.getX())+paddle.getWidth()/2)));
+    //
+    //return intersectsY && intersectsX;
+    if (abs(getX())+getRadius() > abs(paddle.getX())-paddle.getWidth()/2){
+        if ((y >= paddle.getY()-paddle.getHeight()/2) && y <= paddle.getY()+paddle.getHeight()/2){
+            float top = paddle.getY()-paddle.getHeight()/2;
+            System.out.println(y + ">=" + top);
+            float bottom = paddle.getY()+paddle.getHeight()/2;
+            System.out.println(y + "<=" + bottom);
+        }
+    }
     
-    return (abs(x)+radius >= abs(paddle.getX())-paddle.getWidth()/2) && 
-           !(abs(x)-radius >= abs(paddle.getX())) &&
+//    return (abs(x)+radius >= abs(paddle.getX())-paddle.getWidth()/2) && 
+//          !(abs(x)-radius >= abs(paddle.getX())) &&
+//            (abs(getY() - paddle.getY()) < getRadius() + paddle.getHeight()/2);
+
+    return (abs(x)+radius >= abs(paddle.getX())) && 
+           (abs(x)-radius <= abs(paddle.getX())) &&
             (abs(getY() - paddle.getY()) < getRadius() + paddle.getHeight()/2);
   }
 
